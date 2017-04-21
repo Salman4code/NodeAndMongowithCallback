@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Single Page App</title>
+  <link rel="stylesheet" type="text/css" href="/asset/textbox.css">
+  <link rel="stylesheet" type="text/css" href="asset/design.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+
+</script>
+</head>
+
+<body>
+  <div>
+  <ul class="topnav">
+    <li><a href="#/"><b>Google Keep</b></a></li>
+    <li><input type="text"></li>
+    <!-- <li class="dropdownbtn">
+      <a href="javascript:void(0)" class="dropbtn">Contact</a>
+      <div class="dropdown-content"> <a href="#contact">link</a>
+      </div>
+    </li> -->
+    <li class="right"><a href="#/login">Login</a></li>
+    <li class="right"><a href="#/signup">Signup</a></li>
+  </ul>
+</div>
+  <br><br><br>
+  <!-- <h1>{{message}}</h1> -->
+  <div ng-view></div>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script> -->
+  <script src="app.js"></script>
+  <script src="/controller/HomeController.js">
+
+</body>
+
+</html>
