@@ -1,0 +1,22 @@
+{
+  "name": "Single-Page-App",
+  "homepage": "https://github.com/Salman4code/Single-Page-App",
+  "authors": [
+    "Salman4code <khansalman752@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "handlebars": "~3.0.3",
+     "angular"  :"~1.6.1"
+  }
+}
