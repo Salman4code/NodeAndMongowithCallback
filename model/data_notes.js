@@ -49,9 +49,9 @@ data_notes_Schema.statics.update_data_notes = function(request, cb) {
   },cb);
 }
 
-data_notes_Schema.statics.deletes_data_notes = function(request, cb) {
+data_notes_Schema.statics.deletes_data_notes = function(note_id, cb) {
   console.log("delete data");
-  this.remove({_id:request._id},cb);
+  this.remove({_id:note_id},cb);
 }
 
 

@@ -145,13 +145,14 @@ function get_data_notes() {
       $("#content").val("");
 
       for (var i = response.message.length - 1; i >= 0; i--) {
-        console.log(response.message._id);
+        console.log(response.message[i]._id);
+        var note_id=response.message[i]._id;
         title = response.message[i].title;
         take_note = response.message[i].take_note;
         if (localStorage.getItem("view") == "grid") {
           console.log("gridview");
 
-          gridview();
+          gridview(note_id);
 
           // var div = $("<pre class='col-sm-4' id='box' style='border:none; box-shadow: 2px 2px 2px #888; margin-top:10px;'>" + title + "<br>" + take_note + "</pre>");
           // $("#cards").append(div);
@@ -165,7 +166,7 @@ function get_data_notes() {
           console.log("listview");
           // var div = $("<pre id='box1' class='col-sm-9' style='border:none; box-shadow: 2px 2px 2px #888;'>" + title + "<br>" + take_note + "</pre>");
           // $("#list_cards").append(div);
-          listview();
+          listview(note_id);
 
         } else {
           gridview();
@@ -190,9 +191,9 @@ function get_data_notes() {
 }
 
 
-function gridview() {
+function gridview(note_id) {
   console.log("grid");
-  var div = $("<pre class='col-md-4' id='box' style='border:none; box-shadow: 2px 2px 2px #888; margin-top:10px;word-wrap:break-word;'>" + title + "<br>" + take_note + "<br><a id='delete' onclick= delete_notes('"+ +"')>"+'delete'+"</a></pre>");
+  var div = $("<pre class='col-md-4' id='box' style='border:none; box-shadow: 2px 2px 2px #888; margin-top:10px;word-wrap:break-word;'>" + title + "<br>" + take_note + "<br><a id='delete' onclick= delete_notes('"+note_id+"')>"+'delete'+"</a></pre>");
   $("#cards").append(div);
   var elem = document.querySelector('#cards');
   var pckry = new Packery(elem, {
@@ -205,16 +206,16 @@ function gridview() {
     var draggie= new Draggabilly(itemElem);
     pckry.bindDraggabillyEvents(draggie);
   })
-
-  $(document).on('click', '#delete', (function() {
-
-  }));
+  //
+  // $(document).on('click', '#delete', (function() {
+  //
+  // }));
 
 }
 
 function delete_notes(id){
   $.ajax({
-    url: "/delete_data_notes/"+id,
+    url: "/delete_data_notes/"+id+"",
     type: "POST",
     success: function(response) {
       console.log('the page was loaded', response);

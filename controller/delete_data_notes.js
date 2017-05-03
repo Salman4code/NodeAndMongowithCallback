@@ -4,11 +4,11 @@ var UserData = require('../model/data_notes');
 
 
 
-router.post('/', function(request, response) {
+router.post('/:id', function(request, response) {
 
   console.log("delete Api call");
 
-  UserData.deletes_data_notes(request.body, function(err, result) {
+  UserData.deletes_data_notes(request.params.id,function(err, result) {
     console.log(result);
     if (err) {
       response.send({
