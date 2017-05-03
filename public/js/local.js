@@ -75,7 +75,7 @@ $(document).ready(function() {
   var rPassword = $("#rPassword").val();
 
   var signup={
-    name:Username,
+    username:Username,
     email:Useremail,
     mobile:Usermobile,
     password:password,
@@ -89,7 +89,7 @@ $(document).ready(function() {
     dataType: 'JSON',
     data:signup,
     success: function(response) {
-      // console.log('page was loaded', response);
+       console.log(response.status);
       if(response.status==true)
       {
       welcomepage();
@@ -152,7 +152,7 @@ function welcomepage() {
 
 function validateinput(signup)
 {
-  Username = signup.name;
+  Username = signup.username;
   Useremail = signup.email;
   Usermobile=signup.mobile;
   password = signup.password;

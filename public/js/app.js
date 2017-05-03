@@ -35,16 +35,16 @@ var utils = {
 
     // Fetch json data from the given url
     // @return promise
-    // fetch: function(url, data) {
-    //     var _data = data || {};
-    //     return $.ajax({
-    //         context: this,
-    //         url: window.location.origin + "/" + url,
-    //         data: _data,
-    //         method: "GET",
-    //         dataType: "JSON"
-    //     });
-    // }
+    fetch: function(url, data) {
+        var _data = data || {};
+        return $.ajax({
+            context: this,
+            url: window.location.origin + "/" + url,
+            data: _data,
+            method: "GET",
+            dataType: "JSON"
+        });
+    }
 };
 
 
@@ -140,3 +140,19 @@ var spaRouter = $.extend({}, router, {
 });
 
 spaRouter.init();
+
+$(document.body).on('click', '#menu-toggle', (function(e) {
+  console.log("toggle");
+  $(".sidebar-nav").show();
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+
+}));
+
+// $(document.body).on('click', '#navbar', (function(e) {
+//   console.log("navbar toggle");
+//   $("navbar").show();
+//   e.preventDefault();
+//   $("#page-content-wrapper").toggleClass("toggled");
+//
+// }));

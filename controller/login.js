@@ -7,6 +7,7 @@ var router = express.Router();
 var secretkey = require('../config').secret;
 var cookie = require('cookie-parser')
 var config=require('../config/error');
+// app.use(cookie1());
 // console.log(secretkey);
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 // app.use(cookie());

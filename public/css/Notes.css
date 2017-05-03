@@ -1,0 +1,41 @@
+/*note css*/
+#box{
+  width: 240px;
+}
+#div1
+{
+    width: 300px;
+    height: 50px;
+    margin-top: 80px;
+    box-shadow: 2px 2px 2px #888;
+}
+#div2
+{
+    display: none;
+    width: 472px;
+    margin-top: 80px;
+    border: 0;
+    outline: none;
+    box-shadow: 2px 2px 2px #888;
+}
+#note
+{
+    border: 0;
+    border-radius: 1px;
+}
+#title
+{
+    overflow: hidden;
+    width: 472px;
+    height: 30px;
+    resize: none;
+    border: 0;
+}
+#content
+{
+    overflow: hidden;
+    width: 472px;
+    height: 30px;
+    resize: none;
+    border: 0;
+}

@@ -34,6 +34,7 @@ var userDetailSchema = Schema({
 
 userDetailSchema.statics.checksignup = function(request, cb) {
   console.log("inside signup");
+  console.log("from front end",request.body);
   var password = encrypt(request.body.password);
   var userdetail = new this({
     userName: request.body.username,

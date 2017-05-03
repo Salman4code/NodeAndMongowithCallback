@@ -6,7 +6,7 @@ router.post('/',function(request,response){
 
 
   response.clearCookie("key");
-  response.send("logout");
+  response.send({"status":true,"message":"logout"});
 })
 
 

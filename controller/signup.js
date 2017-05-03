@@ -7,7 +7,8 @@ router.post('/', function(request, response) {
   var result={};
   result.status=false;
   try {
-    console.log(config.validationSchema.SignupValidation);
+    // console.log(config.validationSchema.SignupValidation);
+    console.log(request.body);
     request.check(config.validationSchema.SignupValidation);
     request.getValidationResult().then(function(isValid) {
       try {

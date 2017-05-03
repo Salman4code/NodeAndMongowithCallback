@@ -1,0 +1,349 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/*note css*/
+#navfix{
+position: fixed;
+}
+#iconnav{
+  list-style: none;
+  float: right;
+  /*margin-right: 6px;*/
+  margin-top: 6px;
+}
+#iconnav a{
+  margin-right: 20px;
+}
+#cards
+{
+  margin-top: 35px;
+  margin-left: 125px;
+  width:80%;
+}
+#list
+{
+    display: none;
+}
+#box
+{
+    overflow: hidden;
+    width: 260px;
+}
+#box1
+{
+    /*width: 700px;*/
+    overflow: hidden;
+
+}
+#div1
+{
+    width: 627px;
+    height: 50px;
+    margin-top: 80px;
+    box-shadow: 2px 2px 2px #888;
+    margin-left: 190px;
+}
+
+#div2
+{
+    display: none;
+
+    width: 627px;
+    margin-top: 80px;
+
+    border: 0;
+    outline: none;
+    box-shadow: 2px 2px 2px #888;
+    margin-left: 190px;
+}
+#note
+{
+    border: 0;
+    border-radius: 1px;
+}
+#title
+{
+    overflow: hidden;
+
+    width: 472px;
+    height: 30px;
+
+    resize: none;
+
+    border: 0;
+}
+#content
+{
+    overflow: hidden;
+
+    width: 472px;
+    height: 30px;
+    resize: none;
+    border: 0;
+}
+
+/* Toggle Styles */
+
+#wrapper
+{
+    padding-left: 0;
+
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+            transition: all .5s ease;
+}
+
+#wrapper.toggled
+{
+    padding-left: 250px;
+}
+
+#sidebar-wrapper
+{
+    position: fixed;
+    z-index: 1000;
+    left: 250px;
+
+    overflow-y: auto;
+
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+            transition: all .5s ease;
+
+    background: white;
+}
+
+#wrapper.toggled #sidebar-wrapper
+{
+    width: 250px;
+}
+
+#page-content-wrapper
+{
+    width: 100%;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper
+{
+    position: absolute;
+
+    margin-right: -250px;
+}
+
+#navcolor
+{
+    border: none;
+    background-color: #fb0;
+}
+/*search box*/
+#searchtextbox
+{
+    width: 350px;
+    margin-top: 7px;
+    /*margin-left: 10px;*/
+    padding: 12px 20px 10px 40px;
+
+    border: none;
+    border-radius: 4px;
+    background-color: #f5b400;
+    background-image: url('../image/searchicon.png');
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+}
+#searchtextbox:focus
+{
+    background-color: white;
+}
+#googlekeeptext
+{
+  color: black;
+  font-family: 'Roboto',  arial,sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+  padding: 8px;
+  text-decoration: none;
+}
+/*li
+{
+    margin-top: 13px;
+}*/
+img
+{
+    position: relative;
+    top: 6px;
+    width: 25px;
+    height: 25px;
+    /*display:block;*/
+}
+/*#list,#grid,#referesh,#notification,#logOut{
+  display:inline-block;
+}*/
+/*a
+{
+    display: block;
+}*/
+/* Sidebar Styles */
+
+.sidebar-nav
+{
+    position: absolute;
+    top: 0;
+
+    width: 180px;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    /*background-color: white*/
+}
+
+.sidebar-nav li
+{
+    line-height: 40px;
+
+    text-indent: 20px;
+}
+
+.sidebar-nav li a
+{
+    display: block;
+
+    text-decoration: none;
+
+    color: #999;
+}
+
+.sidebar-nav li a:hover
+{
+    color: #949494;
+    background: #e1e1e1;
+}
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus
+{
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand
+{
+    font-size: 18px;
+    line-height: 60px;
+
+    height: 65px;
+}
+
+.sidebar-nav > .sidebar-brand a
+{
+    color: #999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover
+{
+    color: black;
+    background-color: #bfbfbf;
+}
+#wrapper
+{
+    padding-left: 250px;
+}
+
+#wrapper.toggled
+{
+    padding-left: 0;
+}
+
+#sidebar-wrapper
+{
+width: 180px;
+}
+
+#wrapper.toggled #sidebar-wrapper
+{
+    width: 0;
+}
+
+#page-content-wrapper
+{
+    padding: 20px;
+}
+
+#wrapper.toggled #page-content-wrapper
+{
+    position: relative;
+
+    margin-right: 0;
+}
+
+
+@media (min-width: 768px)
+{
+    #wrapper
+    {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled
+    {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper
+    {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper
+    {
+        width: 0;
+    }
+    #box1{
+      margin-left: 10%;
+      width: 474px;
+    }
+    #div1{
+      width: 474px;
+    }
+
+    #page-content-wrapper
+    {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper
+    {
+        position: relative;
+
+        margin-right: 0;
+    }
+}
+@media (max-width: 768px)
+{
+    #searchtextbox
+    {
+        display: none;
+    }
+    #div1{
+      width:521px;
+    }
+    #grid
+    {
+        display: none;
+    }
+    #iconnav{
+      margin-top: -45px;
+    }
+    /*#change
+    {
+      display:block;
+    }*/
+}

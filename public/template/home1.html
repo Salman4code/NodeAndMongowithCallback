@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="../bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../bower_components/handlebars/handlebars.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="./css/sidenavigation.css">
+  <link rel="stylesheet" type="text/css" href="./css/horizontalnav.css">
+
+  <script src="../js/sgp.js">
+  </script>
+  <script>
+  function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  // document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  // document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+  </script>
+</head>
+<div id="main" class="topnav">
+  <a href="#" onclick="openNav()">&#9776;</a>
+  <!-- <b style="padding:8px;"> -->
+  <!-- <button type="button" id="menu-wrap">&#9776;</button> -->
+  <span style="padding:8px;font-size:20px;font-family:'Roboto',arial,sans-serif"><b>Google </b>Keep</span>
+  <input type="text">&nbsp;&nbsp;
+  <a href="#"><img src="./css/refreshicon.png"></a>
+  <a href="#"><img src="./css/listviewicon.png"></a>
+  <a href="#"><img src="./css/appsicon.png"></a>
+  <a type="button" id="logOut" href="index.html">LogOut</a>
+  <!-- <a class="right" href="#login">Login</a>
+    <a class="right" href="#signup">Signup</a> -->
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">Notes</a>
+  <a href="#">Reminders</a>
+  <a href="#">Labels</a>
+  <a href="#">Archive</a>
+</div>
+</body>
+
+</html>
