@@ -21,7 +21,7 @@ $(document).ready(function() {
     // welcomepage();
   });
 
-
+});
 
   $("#login1").click(function() {
     //alert("hi");
@@ -32,7 +32,7 @@ $(document).ready(function() {
       email:userEmail,
       password:userPassword
     };
-
+    if(validatelogininput(login)){
     $.ajax({
       url: "/login",
       type: "POST",
@@ -64,6 +64,10 @@ $(document).ready(function() {
         console.log("page was not loaded ", error);
       }
     });
+  }
+  else {
+    return;
+  }
 
   });
 
@@ -109,7 +113,7 @@ else {
 }
 
    });
-});
+
 function indexPage() {
 
   $.ajax({
@@ -152,11 +156,11 @@ function welcomepage() {
 
 function validateinput(signup)
 {
-  Username = signup.username;
-  Useremail = signup.email;
-  Usermobile=signup.mobile;
-  password = signup.password;
-  rPassword = signup.confirmpassword;
+  var Username = signup.username;
+  var Useremail = signup.email;
+  var Usermobile=signup.mobile;
+  var password = signup.password;
+  var rPassword = signup.confirmpassword;
 
   var emailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var passwordregex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
@@ -210,4 +214,37 @@ function validateinput(signup)
 
   }
   return true;
+}
+
+function validatelogininput(login)
+{
+var Useremail=login.email;
+var password=login.password;
+console.log("pass",password);
+var emailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var passwordregex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+if(Useremail==""||Useremail==undefined || Useremail==null){
+   $('span').remove();
+   $('#email_id').after('<p style="margin-left:15%;"><span style="color:red;">'+"Please Enter email_id"+'</span></p>');
+   return false;
+}
+else if (!emailregex.test(Useremail)) {
+
+  $('span').remove();
+ $('#email_id').after('<p style="margin-left:15%;"><span style="color:red;">'+"Please Enter valid email_id"+'</span></p>');
+  return false;
+}
+else if (password=="" || password == undefined || password== null) {
+  console.log("check password");
+  $('span').remove();
+ $("#password").after('<p style="margin-left:15%;"><span style="color:red;">'+"Please Enter password"+'</span></p>');
+  return false;
+}
+else if (!passwordregex.test(password)) {
+  $('span').remove();
+  $("#password").after('<p style="margin-left:15%;"><span style="color:red;">'+"Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character"+'</span></p>');
+  return false;
+}
+return true;
 }

@@ -16,7 +16,7 @@ $(document).ready(function() {
       type: "POST",
 
       success: function(response) {
-
+        console.log("logout response", response.message);
         if (response.status == true) {
           indexPage();
 
@@ -84,7 +84,7 @@ $(document).on("click", "#done", (function() {
 }));
 
 $("body").click(function(event) {
-  if (event.target.id == "title" || event.target.id == "content" ||event.target.id=="done")
+  if (event.target.id == "title" || event.target.id == "content" || event.target.id == "done")
     return;
   else {
     $("#div2").hide();
@@ -116,7 +116,7 @@ function save_notes(title, take_note) {
     dataType: "JSON",
     data: obj,
     success: function(response) {
-      //  console.log('the page was loaded', response);
+      console.log('save_notes response', response);
 
       var a = response.message;
       console.log(a);
@@ -137,30 +137,21 @@ function get_data_notes() {
     type: "POST",
     dataType: 'JSON',
     success: function(response) {
+      console.log('get_data_notes response', response);
       $("#cards").html("");
       $("#list_cards").html("");
-      console.log('page was loaded', response);
-      console.log(response.message);
       $("#title").val("");
       $("#content").val("");
 
-      for (var i = response.message.length - 1; i >= 0; i--) {
-        console.log(response.message[i]._id);
-        var note_id=response.message[i]._id;
-        title = response.message[i].title;
-        take_note = response.message[i].take_note;
+      for (var i = response.note_data.length - 1; i >= 0; i--) {
+        console.log(response.note_data[i]._id);
+        var note_id = response.note_data[i]._id;
+        title = response.note_data[i].title;
+        take_note = response.note_data[i].take_note;
         if (localStorage.getItem("view") == "grid") {
           console.log("gridview");
 
           gridview(note_id);
-
-          // var div = $("<pre class='col-sm-4' id='box' style='border:none; box-shadow: 2px 2px 2px #888; margin-top:10px;'>" + title + "<br>" + take_note + "</pre>");
-          // $("#cards").append(div);
-          // var elem = document.querySelector('#cards');
-          // var pckry = new Packery(elem, {
-          //   itemSelector: '#box',
-          //   gutter: 10
-          // });
 
         } else if (localStorage.getItem("view") == "list") {
           console.log("listview");
@@ -168,17 +159,17 @@ function get_data_notes() {
           // $("#list_cards").append(div);
           listview(note_id);
 
-        } else {
-          gridview();
         }
-        // var elem = document.querySelector('#cards');
-        // var pckry = new Packery(elem, {
-        //   itemSelector: '#box',
-        //   gutter: 10
-        // });
-
       }
-
+      // var elem = document.querySelector('#cards');
+      // var pckry = new Packery(elem, {
+      //   itemSelector: '#box',
+      //   gutter: 10
+      // });
+      // pckry.getItemElements().forEach(function(itemElem){
+      //   var draggie= new Draggabilly(itemElem);
+      //   pckry.bindDraggabillyEvents(draggie);
+      // })
 
     },
     error: function(error) {
@@ -191,35 +182,76 @@ function get_data_notes() {
 }
 
 
-function gridview(note_id) {
-  console.log("grid");
-  var div = $("<pre class='col-md-4' id='box' style='border:none; box-shadow: 2px 2px 2px #888; margin-top:10px;word-wrap:break-word;'>" + title + "<br>" + take_note + "<br><a id='delete' onclick= delete_notes('"+note_id+"')>"+'delete'+"</a></pre>");
-  $("#cards").append(div);
-  var elem = document.querySelector('#cards');
-  var pckry = new Packery(elem, {
-    // options
-    itemSelector: '#box',
-    gutter: 10
+function update_data_notes(id, poptitle, popnote) {
+  var notedata = {
+    title: poptitle,
+    take_note: popnote
+  };
+  $.ajax({
+    url: "/update_data_notes/" + id + "",
+    type: "POST",
+    dataType: "JSON",
+    data: notedata,
+    success: function(response) {
+      if (response.status == true) {
+        // console.log('the page was loaded', response);
+        console.log("update_data_notes",response.message+" "+response.updateresult);
+        get_data_notes();
+      } else {
+        console.log(response.updateresult);
+      }
+    },
+    error: function(error) {
+      console.log('the page was not loaded', error);
+    }
   });
-
-  pckry.getItemElements().forEach(function(itemElem){
-    var draggie= new Draggabilly(itemElem);
-    pckry.bindDraggabillyEvents(draggie);
-  })
-  //
-  // $(document).on('click', '#delete', (function() {
-  //
-  // }));
 
 }
 
-function delete_notes(id){
+function read_single_note(id) {
+  console.log("function");
   $.ajax({
-    url: "/delete_data_notes/"+id+"",
+    url: "/read_single_note/" + id + "",
     type: "POST",
     success: function(response) {
-      console.log('the page was loaded', response);
-;
+      console.log('the page was loaded', response.message);
+      // $("#poptitle").val("");
+      $("#popnote").html("");
+      console.log("id::", response.message[0]._id);
+      console.log(response.message[0].title);
+      console.log(response.message[0].take_note);
+      console.log(response.message[0].createdAt);
+      console.log("Date",response.message[0].updatedAt);
+       notecard_id = response.message[0]._id;
+      var title = response.message[0].title;
+      var take_note = response.message[0].take_note;
+      $("#poptitle").text(title);
+      $("#popnote").append(take_note);
+
+      // $("#popdone").attr('onclick',"update_data_notes('"+notecard_id+"','"+poptitle+"','"+popnote+"')")
+
+
+      // get_data_notes();
+    },
+    error: function(error) {
+      console.log('the page was not loaded', error);
+    }
+  });
+}
+
+$(document).on("click", "#popdone", (function() {
+
+  var poptitle = $("#poptitle").html();
+  var popnote = $("#popnote").html();
+  update_data_notes(notecard_id, poptitle, popnote);
+}));
+
+function delete_notes(id) {
+  $.ajax({
+    url: "/delete_data_notes/" + id + "",
+    type: "POST",
+    success: function(response) {
+      console.log('the page was loaded', response);;
       console.log(response.message);
       get_data_notes();
     },
@@ -230,20 +262,41 @@ function delete_notes(id){
 
 }
 
-function listview() {
-  // $("#cards").empty();
-  // $("#list_cards").empty();
+function listview(note_id) {
+
   console.log("list");
-  var div = $("<pre class='col-sm-12' id='box1' style='border:none; box-shadow: 2px 2px 2px #888;word-wrap:break-word;width: 700px;'>" + title + "<br>" + take_note +"<br><a id='delete'>"+'delete'+" </a></pre>");
+  // var div = $("<pre class='col-sm-12' id='box1' style='background-color:rgb(250, 250, 250);margin-left:18%;border:none;box-shadow: 0 0 10px 0 rgba(0,0,0,0.2),0 2px 2px 0 rgba(0,0,0,0.2);word-wrap:break-word;width: 458px;' data-toggle='modal' data-target='#myModal'>" + title + "<br>" + take_note + "<br><a id='delete' onclick= delete_notes('" + note_id + "')>" + 'delete' + " </a><a id='update' onclick= read_single_note('" + note_id + "')>" + '&nbsp;update' + "</a></pre>");
+  var div = $("<pre class='col-md-10 col-sm-10' id='box1'><div data-toggle='modal' data-target='#myModal' onclick= read_single_note('" + note_id + "') ><div>" + title + "</div><div id='notecontent'>"+take_note+"</div></div><div><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a></div></pre>");
+
   $("#cards").append(div);
-  //   var elem = document.querySelector('#list_cards');
-  //   var pckry = new Packery(elem, {
-  //     // options
-  //     itemSelector: '#box1',
-  //     gutter: 10
-  //   });
+  var elem = document.querySelector('#cards');
+  var pckry = new Packery(elem, {
+    itemSelector: '#box1',
+    gutter: 10
+  });
+  pckry.getItemElements().forEach(function(itemElem) {
+    var draggie = new Draggabilly(itemElem);
+    pckry.bindDraggabillyEvents(draggie);
+  })
 }
 
+function gridview(note_id) {
+  console.log("grid");
+  // var div = $("<pre class='col-md-4' id='box' style='border:none;box-shadow: 0 0 10px 0 rgba(0,0,0,0.2),0 2px 2px 0 rgba(0,0,0,0.2); margin-top:10px; word-wrap: break-word;' data-toggle='modal' data-target='#myModal'>" + title + "<br>" + take_note + "<br><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a><a id='update' onclick= read_single_note('" + note_id + "')>" + 'update' + "</a></pre>");
+  var div = $("<pre class='col-md-4' id='box'><div data-toggle='modal' data-target='#myModal' onclick= read_single_note('" + note_id + "') ><div style='font-size: large;'>" + title + "</div><div id='notecontent'>"+take_note+"</div></div><div><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a></div></pre>");
+  $("#cards").append(div);
+  var elem = document.querySelector('#cards');
+  var pckry = new Packery(elem, {
+    // options
+    itemSelector: '#box',
+    gutter: 20
+  });
+
+  pckry.getItemElements().forEach(function(itemElem) {
+    var draggie = new Draggabilly(itemElem);
+    pckry.bindDraggabillyEvents(draggie);
+  })
+}
 
 function indexPage() {
 
@@ -252,7 +305,7 @@ function indexPage() {
     type: "GET",
     dataType: 'html',
     success: function(response) {
-      //console.log('page was loaded', response);
+      console.log('indexPage response', response);
       $('body').html(response);
     },
     error: function(error) {

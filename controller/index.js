@@ -10,4 +10,5 @@ router.use('/data_notes',require('./authentication'),require('./data_notes')); /
 router.use('/get_data_notes',require('./authentication'),require('./get_data_notes'));//Api for fetching data_notes from db
 router.use('/update_data_notes',require('./update_data_notes'));
 router.use('/delete_data_notes',require('./delete_data_notes'));
+router.use('/read_single_note',require('./read_single_note'));
 module.exports = router;

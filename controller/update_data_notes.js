@@ -4,19 +4,28 @@ var UserData = require('../model/data_notes');
 
 
 
-router.post('/', function(request, response) {
-console.log(request.body);
-  UserData.update_data_notes(request.body, function(err, result) {
-    console.log(result);
+router.post('/:id', function(request, response) {
+  console.log(request.params.id);
+  var id = request.params.id;
+  UserData.update_data_notes(id, request.body, function(err, result) {
+    console.log("result",result);
     if (err) {
       response.send({
         "status": false,
         "message": err
       });
+    } else if (result.nModified == 0) {
+      response.send({
+        "status": false,
+        "message": "Data not modified"
+      });
     } else {
       response.send({
         "status": true,
-        "message": result
+        // "message": result
+        "message": "Data Successfully Updated",
+        "updateresult": result
+
       });
     }
 
