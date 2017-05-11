@@ -35,16 +35,16 @@ var utils = {
 
     // Fetch json data from the given url
     // @return promise
-    fetch: function(url, data) {
-        var _data = data || {};
-        return $.ajax({
-            context: this,
-            url: window.location.origin + "/" + url,
-            data: _data,
-            method: "GET",
-            dataType: "JSON"
-        });
-    }
+    // fetch: function(url, data) {
+    //     var _data = data || {};
+    //     return $.ajax({
+    //         context: this,
+    //         url: window.location.origin + "/" + url,
+    //         data: _data,
+    //         method: "GET",
+    //         dataType: "JSON"
+    //     });
+    // }
 };
 
 
@@ -105,7 +105,7 @@ var router = {
           console.log(this.routes[keyName]);
             this.routes[keyName](url);
 
-            // Render the error page if the
+            // Render the error page if the("#
             // keyword is not found in routes.
         } else {
             utils.pageNotFoundError();
@@ -120,17 +120,17 @@ var spaRoutes = {
         console.log('home was called...');
         utils.renderPageTemplate("#home-page-template");
     },
-    "#login": function(url) {
-        console.log('login was called...');
-        utils.renderPageTemplate("#login-page-template");
-    },
+    // "#login": function(url) {
+    //     console.log('login was called...');
+    //     utils.renderPageTemplate("#login-page-template");
+    // },
     "#signup": function(url) {
         console.log('signup was called...');
         utils.renderPageTemplate("#signup-page-template");
     },
     "#welcomepage": function(url){
       console.log('welcome page was called');
-      utils.renderPageTemplate("#welcome-page-template");
+      utils.renderPageTemplate("#welcomepage-page-template");
     }
 };
 

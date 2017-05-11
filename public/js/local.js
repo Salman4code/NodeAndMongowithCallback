@@ -6,10 +6,13 @@ $(document).ready(function() {
     url: "/welcome",
     type: "GET",
     success: function(response) {
-      console.log('page was loaded', response.status);
+      console.log('page was loaded1', response.status);
       if(response.status==true)
       {
+        console.log("wecome1111");
         welcomepage();
+      }else{
+        console.log("dfsfsdfdf");
       }
     },
     error: function(error) {
@@ -144,6 +147,9 @@ function welcomepage() {
     success: function(response) {
       //console.log('page was loaded', response);
       $('body').html(response);
+      // window.location.hash="#welcomepage";
+      // location.reload();
+
     },
     error: function(error) {
       console.log("page was not loaded ", error);

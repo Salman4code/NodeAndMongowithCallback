@@ -18,6 +18,7 @@ $(document).ready(function() {
       success: function(response) {
         console.log("logout response", response.message);
         if (response.status == true) {
+            // window.location.hash="#home";
           indexPage();
 
         }
@@ -218,10 +219,10 @@ function read_single_note(id) {
       // $("#poptitle").val("");
       $("#popnote").html("");
       console.log("id::", response.message[0]._id);
-      console.log(response.message[0].title);
-      console.log(response.message[0].take_note);
-      console.log(response.message[0].createdAt);
-      console.log("Date",response.message[0].updatedAt);
+      // console.log(response.message[0].title);
+      // console.log(response.message[0].take_note);
+      // console.log(response.message[0].createdAt);
+      // console.log("Date",response.message[0].updatedAt);
        notecard_id = response.message[0]._id;
       var title = response.message[0].title;
       var take_note = response.message[0].take_note;
@@ -263,13 +264,14 @@ function delete_notes(id) {
 }
 
 function listview(note_id) {
-
+  $("#cards").hide();
+  $("#list_cards").show();
   console.log("list");
   // var div = $("<pre class='col-sm-12' id='box1' style='background-color:rgb(250, 250, 250);margin-left:18%;border:none;box-shadow: 0 0 10px 0 rgba(0,0,0,0.2),0 2px 2px 0 rgba(0,0,0,0.2);word-wrap:break-word;width: 458px;' data-toggle='modal' data-target='#myModal'>" + title + "<br>" + take_note + "<br><a id='delete' onclick= delete_notes('" + note_id + "')>" + 'delete' + " </a><a id='update' onclick= read_single_note('" + note_id + "')>" + '&nbsp;update' + "</a></pre>");
-  var div = $("<pre class='col-md-10 col-sm-10' id='box1'><div data-toggle='modal' data-target='#myModal' onclick= read_single_note('" + note_id + "') ><div>" + title + "</div><div id='notecontent'>"+take_note+"</div></div><div><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a></div></pre>");
+  var div = $("<pre class='col-md-12 col-sm-12' id='box1'><div data-toggle='modal' data-target='#myModal' onclick= read_single_note('" + note_id + "') ><div>" + title + "</div><div id='notecontent'>"+take_note+"</div></div><div><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a></div></pre>");
 
-  $("#cards").append(div);
-  var elem = document.querySelector('#cards');
+  $("#list_cards").append(div);
+  var elem = document.querySelector('#list_cards');
   var pckry = new Packery(elem, {
     itemSelector: '#box1',
     gutter: 10
@@ -281,6 +283,8 @@ function listview(note_id) {
 }
 
 function gridview(note_id) {
+  $("#list_cards").hide();
+  $("#cards").show();
   console.log("grid");
   // var div = $("<pre class='col-md-4' id='box' style='border:none;box-shadow: 0 0 10px 0 rgba(0,0,0,0.2),0 2px 2px 0 rgba(0,0,0,0.2); margin-top:10px; word-wrap: break-word;' data-toggle='modal' data-target='#myModal'>" + title + "<br>" + take_note + "<br><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a><a id='update' onclick= read_single_note('" + note_id + "')>" + 'update' + "</a></pre>");
   var div = $("<pre class='col-md-4' id='box'><div data-toggle='modal' data-target='#myModal' onclick= read_single_note('" + note_id + "') ><div style='font-size: large;'>" + title + "</div><div id='notecontent'>"+take_note+"</div></div><div><a id='delete' onclick = delete_notes('" + note_id + "')>" + 'delete' + "</a></div></pre>");
